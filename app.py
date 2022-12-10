@@ -47,6 +47,7 @@ def cart_page():
 
 @app.route('/checkout', methods=['POST'])
 def checkout():
+    global cart
     # checking out clears the cart
     cart = {}
     return render_template('Checkout.html')
