@@ -45,5 +45,11 @@ def cart_page():
     tax = total * tax_rate
     return render_template('Cart.html', catalogue=catalogue, cart=cart, total=total, tax=tax)
 
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    # checking out clears the cart
+    cart = {}
+    return render_template('Checkout.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
