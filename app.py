@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-
+#Jeremie, Anisah
 app = Flask(__name__)
 
 tax_rate = 0.12
@@ -101,6 +101,16 @@ def totalPrice():
 @app.route('/')
 def home():
     return render_template('Home.html')
+
+@app.route('/Home.html')
+def home_page():
+
+    return render_template('Home.html', catalogue=catalogue, cart=cart)
+
+@app.route('/Products.html')
+def product_page():
+
+    return render_template('Products.html', catalogue=catalogue, cart=cart)
 
 @app.route('/Cart.html')
 def cart_page():
