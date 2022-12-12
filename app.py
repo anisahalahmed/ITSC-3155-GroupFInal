@@ -87,6 +87,10 @@ catalogue = [
     }
 ]
 
+@app.route('/addToCart/<itemNum>')
+def AddToCart(itemNum):
+    cart[itemNum] += 1
+
 def totalPrice():
     total = 0
     for item, count in cart.items():
