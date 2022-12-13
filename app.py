@@ -7,18 +7,18 @@ tax_rate = 0.12
 # cart is a dictionary of item id's to a number which is how
 # many of that item has been added to cart
 cart = {
-    0: 0,
-    1: 0, 
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-    6: 0,
-    7: 0,
-    8: 0,
-    9: 0,
-    10: 0,
-    11: 0
+    int(0): int(0),
+    int(1): int(0), 
+    int(2): int(0),
+    int(3): int(0),
+    int(4): int(0),
+    int(5): int(0),
+    int(6): int(0),
+    int(7): int(0),
+    int(8): int(0),
+    int(9): int(0),
+    int(10): int(0),
+    int(11): int(0)
 }
 
 # the catalogue is the list of all items in our store
@@ -26,70 +26,79 @@ cart = {
 # each item
 catalogue = [
     {
-        "id": 0,
+        "id": 'a',
         "name": 'A',
         "price": 6
     },
     {
-        "id": 1,
+        "id": 'b',
         "name": 'B',
         "price": 7
     },
     {
-        "id": 2,
+        "id": 'c',
         "name": 'C',
         "price": 8
     },
     {
-        "id": 3,
+        "id": 'd',
         "name": 'D',
         "price": 9
     },
     {
-        "id": 4,
+        "id": 'e',
         "name": 'a',
         "price": 11
     },
     {
-        "id": 5,
+        "id": 'f',
         "name": 'b',
         "price": 12
     },
     {
-        "id": 6,
+        "id": 'g',
         "name": 'c',
         "price": 13
     },
     {
-        "id": 7,
+        "id": 'h',
         "name": 'd',
         "price": 14
     },
     {
-        "id": 8,
+        "id": 'i',
         "name": 'one',
         "price": 1
     },
     {
-        "id": 9,
+        "id": 'j',
         "name": 'two',
         "price": 20
     },
     {
-        "id": 10,
+        "id": 'k',
         "name": 'three',
         "price": 300
     },
     {
-        "id": 11,
+        "id": 'l',
         "name": 'four',
         "price": 4000
     }
 ]
 
+@app.route('/User.html')
+def user_page():
+    return render_template('User.html')
+
 @app.route('/addToCart/<itemNum>')
 def AddToCart(itemNum):
-    cart[itemNum] += 1
+    cart[itemNum] = int(cart.get(itemNum, 0)) + int(1)
+
+    total = totalPrice()
+    tax = total * tax_rate
+
+    return render_template('Cart.html', catalogue=catalogue, cart=cart, total=total, tax=tax)
 
 def totalPrice():
     total = 0
