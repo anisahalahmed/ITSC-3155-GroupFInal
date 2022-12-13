@@ -7,18 +7,6 @@ tax_rate = 0.12
 # cart is a dictionary of item id's to a number which is how
 # many of that item has been added to cart
 cart = {
-    int(0): int(0),
-    int(1): int(0), 
-    int(2): int(0),
-    int(3): int(0),
-    int(4): int(0),
-    int(5): int(0),
-    int(6): int(0),
-    int(7): int(0),
-    int(8): int(0),
-    int(9): int(0),
-    int(10): int(0),
-    int(11): int(0)
 }
 
 # the catalogue is the list of all items in our store
@@ -93,7 +81,7 @@ def user_page():
 
 @app.route('/addToCart/<itemNum>')
 def AddToCart(itemNum):
-    cart[int(itemNum)] += 1
+    cart[int(itemNum)] = cart.get(int(itemNum), 0) + 1
 
     total = totalPrice()
     tax = total * tax_rate
