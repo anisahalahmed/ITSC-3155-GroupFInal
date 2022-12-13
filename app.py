@@ -93,7 +93,7 @@ def user_page():
 
 @app.route('/addToCart/<itemNum>')
 def AddToCart(itemNum):
-    cart[itemNum] = int(cart.get(itemNum, 0)) + int(1)
+    cart[int(itemNum)] += 1
 
     total = totalPrice()
     tax = total * tax_rate
